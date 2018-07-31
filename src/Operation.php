@@ -21,6 +21,11 @@ class Operation implements IteratorAggregate
     /**
      * @var string
      */
+    protected $identifier;
+
+    /**
+     * @var string
+     */
     protected $description;
 
     /**
@@ -61,6 +66,22 @@ class Operation implements IteratorAggregate
     public function getHttpMethod()
     {
         return $this->httpMethod;
+    }
+
+    /**
+     * @param string $identifier
+     */
+    public function setIdentifier($identifier)
+    {
+        $this->identifier = $identifier;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIdentifier()
+    {
+        return $this->identifier;
     }
 
     /**
@@ -151,6 +172,7 @@ class Operation implements IteratorAggregate
     public function toArray()
     {
         return [
+            'identifier' => $this->identifier,
             'description' => $this->description,
             'request' => $this->requestDescription,
             'requires_authorization' => $this->requiresAuthorization,

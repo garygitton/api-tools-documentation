@@ -225,6 +225,11 @@ class ApiFactory
             $op->setHttpMethod($httpMethod);
 
             if ($isRest) {
+                $identifier = isset($docsArray[$serviceClassName]['collection'][$httpMethod]['identifier'])
+                    ? $docsArray[$serviceClassName]['collection'][$httpMethod]['identifier']
+                    : '';
+                $op->setIdentifier($identifier);
+
                 $description = isset($docsArray[$serviceClassName]['collection'][$httpMethod]['description'])
                     ? $docsArray[$serviceClassName]['collection'][$httpMethod]['description']
                     : '';
@@ -255,6 +260,11 @@ class ApiFactory
             }
 
             if ($isRpc) {
+                $identifier = isset($docsArray[$serviceClassName][$httpMethod]['identifier'])
+                    ? $docsArray[$serviceClassName][$httpMethod]['identifier']
+                    : '';
+                $op->setIdentifier($identifier);
+
                 $description = isset($docsArray[$serviceClassName][$httpMethod]['description'])
                     ? $docsArray[$serviceClassName][$httpMethod]['description']
                     : '';
@@ -294,6 +304,11 @@ class ApiFactory
             foreach ($serviceData['entity_http_methods'] as $httpMethod) {
                 $op = new Operation();
                 $op->setHttpMethod($httpMethod);
+
+                $identifier = isset($docsArray[$serviceClassName]['entity'][$httpMethod]['identifier'])
+                    ? $docsArray[$serviceClassName]['entity'][$httpMethod]['identifier']
+                    : '';
+                $op->setIdentifier($identifier);
 
                 $description = isset($docsArray[$serviceClassName]['entity'][$httpMethod]['description'])
                     ? $docsArray[$serviceClassName]['entity'][$httpMethod]['description']
